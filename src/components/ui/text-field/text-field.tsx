@@ -7,7 +7,7 @@ import VisibilityOff from '@/assets/icons/visibilityOff'
 import { Typography } from '@/components/ui/typography'
 import { clsx } from 'clsx'
 
-import s from './textField.module.scss'
+import s from './text-field.module.scss'
 
 export type TextFieldProps = {
   containerProps?: ComponentProps<'div'>
