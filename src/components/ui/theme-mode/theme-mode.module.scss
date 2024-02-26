@@ -1,0 +1,80 @@
+$checkbox-width: 112px;
+$checkbox-height: 30px;
+$checkbox-bg: #c1dcfc;
+$toggle-width: 50px;
+$toggle-height: 25px;
+$toggle-radius: 30px;
+$toggle-translateX: 56px;
+$checked-bg: linear-gradient(40deg, #8983f7, #a3dafb 70%);
+$unchecked-bg: linear-gradient(40deg, #f5890a, #f0c746 70%);
+$checked-slide-bg: #042d5c;
+$checked-slide-color: #fff;
+
+.checkbox {
+  position: relative;
+
+  overflow: hidden;
+
+  width: $checkbox-width;
+  height: $checkbox-height;
+
+  color: black;
+
+  background-color: $checkbox-bg;
+  border-radius: $toggle-radius;
+
+  .toggle {
+    cursor: pointer;
+
+    position: absolute;
+    left: 3px;
+
+    width: $toggle-width;
+    height: $toggle-height;
+
+    background: $unchecked-bg;
+    border-radius: $toggle-radius;
+    box-shadow:
+      0 0 3px rgb(255 255 20),
+      0 0 5px rgb(255 255 20);
+
+    transition: 0.4s;
+  }
+
+  .slide {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: $checkbox-width;
+    height: $checkbox-height;
+
+    .text {
+      cursor: pointer;
+      z-index: 100;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+}
+
+.check {
+  display: none;
+}
+
+.check:checked + .checkbox {
+  .slide {
+    color: $checked-slide-color;
+    background-color: $checked-slide-bg;
+
+    .toggle {
+      transform: translateX($toggle-translateX);
+      background: $checked-bg;
+      box-shadow:
+        -0 -0 10px #8983f7,
+        -0 -0 3px #8983f7;
+    }
+  }
+}
