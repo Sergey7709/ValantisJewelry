@@ -1,1 +1,7 @@
-export * from '../icons'
+export { ArrowLeft } from './arrow-left'
+export { ArrowRight } from './arrow-right'
+export { ChevronUp } from './chevronUp'
+export { Close } from './close'
+export { Eye } from './eye'
+export { Search } from './search'
+export { VisibilityOff } from './visibilityOff'
