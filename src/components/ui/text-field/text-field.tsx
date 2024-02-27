@@ -1,9 +1,9 @@
 import { ComponentProps, ComponentPropsWithoutRef, forwardRef, useState } from 'react'
 
 import { Close } from '@/assets/icons/close'
-import Eye from '@/assets/icons/eye'
+import { Eye } from '@/assets/icons/eye'
 import { Search } from '@/assets/icons/search'
-import VisibilityOff from '@/assets/icons/visibilityOff'
+import { VisibilityOff } from '@/assets/icons/visibilityOff'
 import { Typography } from '@/components/ui/typography'
 import { clsx } from 'clsx'
 
