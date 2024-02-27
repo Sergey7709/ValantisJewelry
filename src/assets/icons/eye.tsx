@@ -22,4 +22,4 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
 )
 const ForwardRef = forwardRef(SvgComponent)
 
-export default memo(ForwardRef)
+export const Eye = memo(ForwardRef)
