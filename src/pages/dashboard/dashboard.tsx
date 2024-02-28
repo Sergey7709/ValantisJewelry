@@ -4,18 +4,8 @@ import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
 import { Pagination } from '@/components/ui/pagination'
 import { TextField } from '@/components/ui/text-field'
+import { AxiosParams, FilterParams, ResponseData } from '@/pages/dashboard/types.dashboard'
 import { useAxiosQuery } from '@/services'
-
-type PaginationParams = {
-  limit: number
-  offset: number
-}
-
-type FilterParams = { brand: string } | { price: number } | { product: string }
-
-type AxiosParams = FilterParams | PaginationParams
-
-type AxiosResponse = { result: string[] }
 
 export const Dashboard = () => {
   const [page, setPage] = useState<number>(1)
@@ -36,7 +26,7 @@ export const Dashboard = () => {
     data: dataIDs,
     error: errorIds,
     loading: loadingIds,
-  } = useAxiosQuery<AxiosResponse>({
+  } = useAxiosQuery<ResponseData>({
     params: axiosParams,
   })
 
