@@ -1,5 +1,7 @@
+export { ArrowDown } from './arrow-down'
 export { ArrowLeft } from './arrow-left'
 export { ArrowRight } from './arrow-right'
+export { ArrowUp } from './arrow-up'
 export { ChevronUp } from './chevronUp'
 export { Close } from './close'
 export { Eye } from './eye'
