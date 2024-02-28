@@ -1,33 +1,25 @@
-import { useAxiosQuery } from '@/services'
+import { ItemListProps, Items, ItemsResponse } from '@/components/item-list/types.ItemList'
+import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
-type ItemListProps = {
-  dataIDs: { result: string[] }
-}
+const { getItem } = requestValue
+const { post } = requestMethod
 
-type Items = {
-  brand: string
-  id: string
-  price: number
-  product: string
-}
-
-type ItemsResponse = {
-  result: Array<Items>
-}
 export const ItemList = ({ dataIDs }: ItemListProps) => {
+  const axiosParams = {
+    data: {
+      action: getItem,
+      params: { ids: [...new Set(dataIDs.result)] },
+    },
+    method: post,
+    url: valueUrlParams,
+  }
+
   const {
     data: dataItems,
     error: errorItems,
     loading: loadingItems,
   } = useAxiosQuery<ItemsResponse>({
-    params: {
-      data: {
-        action: 'get_items',
-        params: { ids: [...new Set(dataIDs.result)] },
-      },
-      method: 'post',
-      url: '',
-    },
+    params: axiosParams,
   })
 
   if (loadingItems) {
