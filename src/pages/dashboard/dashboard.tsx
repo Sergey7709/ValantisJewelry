@@ -1,48 +1,66 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
+import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
 import { Pagination } from '@/components/ui/pagination'
 import { TextField } from '@/components/ui/text-field'
 import { useAxiosQuery } from '@/services'
 
-export const Dashboard = () => {
-  const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(5)
+type PaginationParams = {
+  limit: number
+  offset: number
+}
 
-  const axiosParams = useMemo(
-    () => ({
-      data: {
-        action: 'get_ids',
-        params: { limit, offset: (page - 1) * limit },
-      },
-      method: 'post',
-      url: '',
-    }),
-    [page, limit]
-  )
+type FilterParams = { brand: string } | { price: number } | { product: string }
+
+type AxiosParams = FilterParams | PaginationParams
+
+type AxiosResponse = { result: string[] }
+
+export const Dashboard = () => {
+  const [page, setPage] = useState<number>(1)
+  const [limit, setLimit] = useState<number>(5)
+  const [action, setAction] = useState<string>('get_ids')
+  const [params, setParams] = useState<AxiosParams>({ limit, offset: (page - 1) * limit })
+
+  const axiosParams = {
+    data: {
+      action,
+      params,
+    },
+    method: 'post',
+    url: '',
+  }
 
   const {
     data: dataIDs,
     error: errorIds,
     loading: loadingIds,
-  } = useAxiosQuery<{ result: string[] }>({
+  } = useAxiosQuery<AxiosResponse>({
     params: axiosParams,
   })
 
   const handlerPagination = (newPage: number) => {
+    setAction('get_ids')
     setPage(newPage)
+    setParams({ limit, offset: (newPage - 1) * limit })
+  }
+
+  const handlerFiltered = (form: FilterParams) => {
+    setAction('filter')
+    setParams(form)
   }
 
   if (loadingIds) {
     return <div>LOADING</div>
   }
-  console.log(dataIDs)
 
   return (
     <div>
       {errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}
       <TextField type={'search'} />
       <ul>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ul>
+      <FilteredPanel />
       {dataIDs && <ItemList dataIDs={dataIDs} />}
       <Pagination
         currentPage={page}
