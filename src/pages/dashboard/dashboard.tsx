@@ -3,14 +3,16 @@ import { useState } from 'react'
 import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
 import { Pagination } from '@/components/ui/pagination'
-import { TextField } from '@/components/ui/text-field'
 import { AxiosParams, FilterParams, ResponseData } from '@/pages/dashboard/types.dashboard'
-import { useAxiosQuery } from '@/services'
+import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
+
+const { filtered, getId } = requestValue
+const { post } = requestMethod
 
 export const Dashboard = () => {
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(5)
-  const [action, setAction] = useState<string>('get_ids')
+  const [action, setAction] = useState<string>(requestValue.getId)
   const [params, setParams] = useState<AxiosParams>({ limit, offset: (page - 1) * limit })
 
   const axiosParams = {
@@ -18,8 +20,8 @@ export const Dashboard = () => {
       action,
       params,
     },
-    method: 'post',
-    url: '',
+    method: post,
+    url: valueUrlParams,
   }
 
   const {
@@ -31,13 +33,13 @@ export const Dashboard = () => {
   })
 
   const handlerPagination = (newPage: number) => {
-    setAction('get_ids')
+    setAction(getId)
     setPage(newPage)
     setParams({ limit, offset: (newPage - 1) * limit })
   }
 
   const handlerFiltered = (form: FilterParams) => {
-    setAction('filter')
+    setAction(filtered)
     setParams(form)
   }
 
@@ -48,9 +50,8 @@ export const Dashboard = () => {
   return (
     <div>
       {errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}
-      <TextField type={'search'} />
       <ul>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ul>
-      <FilteredPanel />
+      <FilteredPanel onHandleSubmitForm={handlerFiltered} />
       {dataIDs && <ItemList dataIDs={dataIDs} />}
       <Pagination
         currentPage={page}
