@@ -1,4 +1,5 @@
 import { ItemListProps, Items, ItemsResponse } from '@/components/item-list/types.ItemList'
+import { removeDuplicates } from '@/components/item-list/utils'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
 const { getItem } = requestValue
@@ -8,7 +9,7 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
   const axiosParams = {
     data: {
       action: getItem,
-      params: { ids: [...new Set(dataIDs.result)] },
+      params: { ids: dataIDs.result },
     },
     method: post,
     url: valueUrlParams,
@@ -26,11 +27,13 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
     return <div>LOADING</div>
   }
 
+  const uniqueItems = removeDuplicates(dataItems?.result || [])
+
   return (
     <div>
       {errorItems && <div style={{ color: 'red' }}>{errorItems}</div>}
-      <ul>
-        {dataItems?.result?.map((el: Items, index) => (
+      <ol>
+        {uniqueItems.map((el: Items, index) => (
           <li key={index}>
             <div style={{ display: 'flex', gap: '6px' }}>
               <div>{el.id}</div>
@@ -40,7 +43,7 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
             </div>
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   )
 }
