@@ -2,20 +2,16 @@ import { useState } from 'react'
 
 import { ArrowDown, ArrowUp } from '@/assets/icons'
 import { Typography } from '@/components/ui/typography'
-import * as RadixLabel from '@radix-ui/react-label'
 import * as RadixSelect from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
 import s from './select.module.scss'
-
-export default () => <RadixLabel.Root />
 
 type SelectType = {
   className?: string
   disabled?: boolean
   fullWidth?: boolean
   isOpen?: boolean
-  label?: string
   onValueChange?: (value: string) => void
   options: string[]
   placeholder?: string
@@ -29,7 +25,6 @@ export const Select = ({
   disabled = false,
   fullWidth,
   isOpen = false,
-  label,
   onValueChange,
   options,
   placeholder,
@@ -65,17 +60,7 @@ export const Select = ({
   }
 
   return (
-    <RadixLabel.Root>
-      {label && (
-        <Typography
-          as={'label'}
-          className={s.label}
-          onClick={onOpenChangeHandler}
-          variant={'body2'}
-        >
-          {label}
-        </Typography>
-      )}
+    <div>
       <RadixSelect.Root
         disabled={disabled}
         onOpenChange={onOpenChangeHandler}
@@ -105,6 +90,6 @@ export const Select = ({
           </RadixSelect.Content>
         </RadixSelect.Portal>
       </RadixSelect.Root>
-    </RadixLabel.Root>
+    </div>
   )
 }
