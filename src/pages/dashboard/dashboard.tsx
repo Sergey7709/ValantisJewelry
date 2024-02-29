@@ -8,12 +8,14 @@ import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/se
 
 const { filtered, getId } = requestValue
 const { post } = requestMethod
+const magicNumber = 8005
+const defaultValue = { limit: 5, offset: 0 }
 
 export const Dashboard = () => {
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(5)
   const [action, setAction] = useState<string>(requestValue.getId)
-  const [params, setParams] = useState<AxiosParams>({ limit, offset: (page - 1) * limit })
+  const [params, setParams] = useState<AxiosParams>(defaultValue)
 
   const axiosParams = {
     data: {
@@ -43,6 +45,11 @@ export const Dashboard = () => {
     setParams(params)
   }
 
+  const handlerReset = () => {
+    setAction(requestValue.getId)
+    setParams(defaultValue)
+  }
+
   if (loadingIds) {
     return <div>LOADING</div>
   }
@@ -51,13 +58,14 @@ export const Dashboard = () => {
     <div>
       {errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}
       <ol>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ol>
+      <button onClick={handlerReset}>Reset</button>
       <FilteredPanel onHandleSubmitParams={handlerFiltered} />
       {dataIDs && <ItemList dataIDs={dataIDs} />}
       <Pagination
         currentPage={page}
         onPageChange={page => handlerPagination(page)}
         pageSize={limit}
-        totalCount={200}
+        totalCount={magicNumber}
       />
     </div>
   )
