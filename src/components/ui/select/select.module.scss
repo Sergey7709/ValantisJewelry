@@ -30,6 +30,13 @@
   }
 }
 
+.label {
+  position: absolute;
+  top: -20px;
+  left: 3px;
+  color: var(--color-accent-300);
+}
+
 .content {
   width: 210px;
   height: max-content;
@@ -60,10 +67,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.label {
-  color: var(--color-dark-100);
 }
 
 .disabled {
