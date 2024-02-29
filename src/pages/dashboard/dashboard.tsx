@@ -3,22 +3,29 @@ import { useState } from 'react'
 import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
 import { Pagination } from '@/components/ui/pagination'
-import { AxiosParams, FilterParams, ResponseData } from '@/pages/dashboard/types.dashboard'
+import {
+  defaultLimit,
+  defaultPage,
+  defaultValueParams,
+  magicNumber,
+} from '@/pages/dashboard/constants.dashboard'
+import { FilterParams, ResponseData, StateType } from '@/pages/dashboard/types.dashboard'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
 const { filtered, getId } = requestValue
 const { post } = requestMethod
-const magicNumber = 8005
-const defaultPage = 1
-const defaultLimit = 5
-const defaultOffset = 0
-const defaultValueParams = { limit: defaultLimit, offset: defaultOffset }
+
+const initialState: StateType = {
+  action: getId,
+  limit: defaultLimit,
+  page: defaultPage,
+  params: defaultValueParams,
+}
 
 export const Dashboard = () => {
-  const [page, setPage] = useState<number>(defaultPage)
-  const [limit, setLimit] = useState<number>(defaultLimit)
-  const [action, setAction] = useState<string>(getId)
-  const [params, setParams] = useState<AxiosParams>(defaultValueParams)
+  const [state, setState] = useState<StateType>(initialState)
+
+  const { action, limit, page, params } = state
 
   const axiosParams = {
     data: {
@@ -38,19 +45,20 @@ export const Dashboard = () => {
   })
 
   const handlerPagination = (newPage: number) => {
-    setAction(getId)
-    setPage(newPage)
-    setParams({ limit, offset: (newPage - 1) * limit })
+    setState({
+      ...state,
+      action: getId,
+      page: newPage,
+      params: { limit, offset: (newPage - 1) * limit },
+    })
   }
 
   const handlerFiltered = (params: FilterParams) => {
-    setAction(filtered)
-    setParams(params)
+    setState({ ...state, action: filtered, params })
   }
 
   const handlerReset = () => {
-    setAction(requestValue.getId)
-    setParams(defaultValueParams)
+    setState({ ...initialState })
   }
 
   if (loadingIds) {
