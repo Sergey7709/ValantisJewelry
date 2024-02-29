@@ -1,4 +1,4 @@
-import { getTimestamp } from '@/utility'
+import { getTimestamp } from '@/shared/utility'
 import axios from 'axios'
 import md5 from 'md5'
 
