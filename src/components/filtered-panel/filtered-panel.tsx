@@ -16,7 +16,6 @@ export const FilteredPanel = ({ onHandleSubmitForm }: FilteredPanelProps) => {
       <form>
         <div className={s.filterTextField}>
           <Select
-            label={'Filter'}
             onValueChange={() => {}}
             options={optionsSelect}
             placeholder={'Select the filter type'}
