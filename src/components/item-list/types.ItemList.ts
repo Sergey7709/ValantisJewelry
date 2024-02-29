@@ -3,7 +3,7 @@ export type ItemListProps = {
 }
 
 export type Items = {
-  brand: string
+  brand: null | string
   id: string
   price: number
   product: string
