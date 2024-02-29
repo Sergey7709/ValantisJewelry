@@ -38,7 +38,13 @@ export const useAxiosQuery = <T>({ params }: AxiosQuery) => {
     }
 
     getData()
-  }, [params?.data.params.offset, params?.data.action])
+  }, [
+    params?.data.params.offset,
+    params?.data.action,
+    params?.data.params.product,
+    params?.data.params.price,
+    params?.data.params.brand,
+  ])
 
   return { data, error, loading }
 }
