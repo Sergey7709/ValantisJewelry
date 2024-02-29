@@ -9,13 +9,16 @@ import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/se
 const { filtered, getId } = requestValue
 const { post } = requestMethod
 const magicNumber = 8005
-const defaultValue = { limit: 5, offset: 0 }
+const defaultPage = 1
+const defaultLimit = 5
+const defaultOffset = 0
+const defaultValueParams = { limit: defaultLimit, offset: defaultOffset }
 
 export const Dashboard = () => {
-  const [page, setPage] = useState<number>(1)
-  const [limit, setLimit] = useState<number>(5)
-  const [action, setAction] = useState<string>(requestValue.getId)
-  const [params, setParams] = useState<AxiosParams>(defaultValue)
+  const [page, setPage] = useState<number>(defaultPage)
+  const [limit, setLimit] = useState<number>(defaultLimit)
+  const [action, setAction] = useState<string>(getId)
+  const [params, setParams] = useState<AxiosParams>(defaultValueParams)
 
   const axiosParams = {
     data: {
@@ -47,7 +50,7 @@ export const Dashboard = () => {
 
   const handlerReset = () => {
     setAction(requestValue.getId)
-    setParams(defaultValue)
+    setParams(defaultValueParams)
   }
 
   if (loadingIds) {
