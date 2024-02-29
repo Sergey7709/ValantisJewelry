@@ -38,9 +38,9 @@ export const Dashboard = () => {
     setParams({ limit, offset: (newPage - 1) * limit })
   }
 
-  const handlerFiltered = (form: FilterParams) => {
+  const handlerFiltered = (params: FilterParams) => {
     setAction(filtered)
-    setParams(form)
+    setParams(params)
   }
 
   if (loadingIds) {
@@ -50,8 +50,8 @@ export const Dashboard = () => {
   return (
     <div>
       {errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}
-      <ul>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ul>
-      <FilteredPanel onHandleSubmitForm={handlerFiltered} />
+      <ol>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ol>
+      <FilteredPanel onHandleSubmitParams={handlerFiltered} />
       {dataIDs && <ItemList dataIDs={dataIDs} />}
       <Pagination
         currentPage={page}
