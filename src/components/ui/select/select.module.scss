@@ -9,7 +9,9 @@
   margin: 10px;
   padding: 6px 12px;
 
-  background: var(--color-dark-900);
+  color: var(--color-light-100);
+
+  background: var(--color-accent-300);
   border: 1px var(--color-dark-300) solid;
   border-radius: 2px;
 
@@ -19,7 +21,7 @@
   }
 
   &:focus {
-    border: 1px solid var(--info-700, #2f68cc);
+    border: 2px solid var(--info-700, #2f68cc);
     border-radius: 2px;
     outline: none;
   }
@@ -52,13 +54,13 @@
   width: 100%;
   padding: 3px 13px;
   font-size: 16px;
-  background: var(--color-dark-900);
+  background: var(--background-color);
 
   &:hover,
   &:focus {
     cursor: pointer;
-    color: var(--primary-300, #a280ff);
-    background: var(--primary-900, #382766);
+    color: var(--color-light-100);
+    background: var(--color-accent-300);
     outline: none;
   }
 }
