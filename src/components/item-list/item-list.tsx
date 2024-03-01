@@ -1,6 +1,7 @@
 import { ItemListTable } from '@/components/item-list/item-list-table'
 import { ItemListProps, ItemsResponse } from '@/components/item-list/types.ItemList'
 import { removeDuplicates } from '@/components/item-list/utils'
+import { LoaderSquare } from '@/components/ui/loader-square'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
 const { getItem } = requestValue
@@ -16,11 +17,7 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
     url: valueUrlParams,
   }
 
-  const {
-    data: dataItems,
-    error: errorItems,
-    loading: loadingItems,
-  } = useAxiosQuery<ItemsResponse>({
+  const { data: dataItems, loading: loadingItems } = useAxiosQuery<ItemsResponse>({
     params: axiosParams,
   })
 
@@ -28,8 +25,8 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
 
   return (
     <div>
-      {loadingItems && <div style={{ color: 'red' }}>LOADING</div>}
-      {errorItems && <div style={{ color: 'red' }}>{errorItems}</div>}
+      {loadingItems && <LoaderSquare />}
+      {/*{errorItems && <div style={{ color: 'red' }}>{errorItems}</div>}*/}
       {dataItems && <ItemListTable uniqueItems={uniqueItems} />}
     </div>
   )
