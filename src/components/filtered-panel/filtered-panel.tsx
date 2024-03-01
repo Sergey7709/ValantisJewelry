@@ -9,6 +9,7 @@ import { useDebounce } from '@/shared/hooks'
 import s from './filtered-panel.module.scss'
 
 type FilteredPanelProps = {
+  handlerReset: () => void
   onHandleSubmitParams: (form: FilterParams) => void
 }
 
@@ -18,7 +19,7 @@ const optionsSelect = ['brand', 'price', 'product']
 
 const milliSecondsValue = 1500
 
-export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps) => {
+export const FilteredPanel = memo(({ handlerReset, onHandleSubmitParams }: FilteredPanelProps) => {
   const [searchValueTextField, setSearchValueTextField] = useState<SearchValue>('')
   const [searchValueSelect, setSearchValueSelect] = useState<KeysFilterParams>('product')
 
@@ -39,6 +40,12 @@ export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps)
     setSearchValueSelect(newValue)
   }
 
+  const onHandlerReset = () => {
+    handlerReset()
+    setSearchValueTextField('')
+    setSearchValueSelect('product')
+  }
+
   return (
     <div className={s.wrapper_textField}>
       <Select
@@ -53,7 +60,11 @@ export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps)
         label={'Select a filter type and enter a search query'}
         onValueChange={handlerChangeValueTextField}
         type={'search'}
+        value={searchValueTextField}
       />
+      <button className={s.button} onClick={onHandlerReset}>
+        Reset
+      </button>
     </div>
   )
 })
