@@ -2,12 +2,14 @@ import { ItemListTable } from '@/components/item-list/item-list-table'
 import { ItemListProps, ItemsResponse } from '@/components/item-list/types.ItemList'
 import { removeDuplicates } from '@/components/item-list/utils'
 import { LoaderSquare } from '@/components/ui/loader-square'
+import { Pagination } from '@/components/ui/pagination'
+import { magicNumber } from '@/pages/dashboard/constants.dashboard'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
 const { getItem } = requestValue
 const { post } = requestMethod
 
-export const ItemList = ({ dataIDs }: ItemListProps) => {
+export const ItemList = ({ dataIDs, handlerPagination, limit, page }: ItemListProps) => {
   const axiosParams = {
     data: {
       action: getItem,
@@ -26,8 +28,17 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
   return (
     <div>
       {loadingItems && <LoaderSquare />}
-      {/*{errorItems && <div style={{ color: 'red' }}>{errorItems}</div>}*/}
-      {dataItems && <ItemListTable uniqueItems={uniqueItems} />}
+      {dataItems && (
+        <>
+          <ItemListTable uniqueItems={uniqueItems} />
+          <Pagination
+            currentPage={page}
+            onPageChange={page => handlerPagination(page)}
+            pageSize={limit}
+            totalCount={magicNumber}
+          />
+        </>
+      )}
     </div>
   )
 }
