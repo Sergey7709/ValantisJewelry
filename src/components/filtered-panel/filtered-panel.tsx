@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from 'react'
 
+import { textTransformer } from '@/components/filtered-panel/filtred-utils/text-transformer'
 import { Select } from '@/components/ui/select'
 import { TextField } from '@/components/ui/text-field'
 import { FilterParams, KeysFilterParams } from '@/pages/dashboard/types.dashboard'
@@ -25,22 +26,9 @@ export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps)
 
   useEffect(() => {
     if (debounce.length >= 1) {
-      const formatValueForBrand = (value: string) =>
-        value
-          .split(' ')
-          .map(text => text.replace(text[0], text[0].toUpperCase()))
-          .join(' ')
+      const submitValue = textTransformer({ searchValueSelect, searchValueTextField })
 
-      const formattedValue =
-        searchValueSelect === 'brand'
-          ? formatValueForBrand(searchValueTextField)
-          : searchValueTextField
-
-      const submitValueSelect = {
-        [searchValueSelect]: searchValueSelect === 'price' ? +formattedValue : formattedValue,
-      } as FilterParams
-
-      onHandleSubmitParams(submitValueSelect)
+      onHandleSubmitParams(submitValue)
     }
   }, [debounce])
 
