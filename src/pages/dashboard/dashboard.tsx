@@ -62,24 +62,22 @@ export const Dashboard = () => {
     }))
   }
 
-  const handlerFiltered = useCallback((params: FilterParams) => {
-    setState({ ...state, action: filtered, params })
-  }, [])
+  const handlerFiltered = useCallback(
+    (params: FilterParams) => {
+      setState({ ...state, action: filtered, params })
+    },
+    [state]
+  )
 
-  const handlerReset = () => {
+  const handlerReset = useCallback(() => {
     setState({ ...initialState })
-  }
+  }, [])
 
   return (
     <div>
       {loadingIds && <LoaderSquare />}
-      {/*{errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}*/}
-      {/*<ol>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ol>*/}
       <div className={s.wrapper_panel}>
-        <FilteredPanel onHandleSubmitParams={handlerFiltered} />
-        <button className={s.button} onClick={handlerReset}>
-          Reset
-        </button>
+        <FilteredPanel handlerReset={handlerReset} onHandleSubmitParams={handlerFiltered} />
       </div>
       {dataIDs && !loadingIds && (
         <>
