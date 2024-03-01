@@ -1,4 +1,5 @@
-import { ItemListProps, Items, ItemsResponse } from '@/components/item-list/types.ItemList'
+import { ItemListTable } from '@/components/item-list/item-list-table'
+import { ItemListProps, ItemsResponse } from '@/components/item-list/types.ItemList'
 import { removeDuplicates } from '@/components/item-list/utils'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
@@ -23,27 +24,13 @@ export const ItemList = ({ dataIDs }: ItemListProps) => {
     params: axiosParams,
   })
 
-  if (loadingItems) {
-    return <div>LOADING</div>
-  }
-
-  const uniqueItems = removeDuplicates(dataItems?.result || [])
+  const uniqueItems = removeDuplicates(dataItems?.result ?? [])
 
   return (
     <div>
+      {loadingItems && <div style={{ color: 'red' }}>LOADING</div>}
       {errorItems && <div style={{ color: 'red' }}>{errorItems}</div>}
-      <ol>
-        {uniqueItems.map((el: Items, index) => (
-          <li key={index}>
-            <div style={{ display: 'flex', gap: '6px' }}>
-              <div>{el.id}</div>
-              <div> {el.brand}</div>
-              <div>{el.product}</div>
-              <div> {el.price}</div>
-            </div>
-          </li>
-        ))}
-      </ol>
+      {dataItems && <ItemListTable uniqueItems={uniqueItems} />}
     </div>
   )
 }
