@@ -12,3 +12,10 @@ export type Items = {
 export type ItemsResponse = {
   result: Array<Items>
 }
+
+export type Item = {
+  brand: null | string
+  id: string
+  price: number
+  product: string
+}
