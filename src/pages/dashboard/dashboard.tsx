@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
 import { LoaderSquare } from '@/components/ui/loader-square'
+import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button/scroll-to-top-button'
 import {
   defaultLimit,
   defaultPage,
@@ -87,6 +88,7 @@ export const Dashboard = () => {
           />
         </>
       )}
+      <ScrollToTopButton />
     </div>
   )
 }
