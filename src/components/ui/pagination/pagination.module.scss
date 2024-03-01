@@ -6,7 +6,7 @@
 
   padding: 0;
 
-  color: var(--color-light-100);
+  color: var(--font-color);
   list-style-type: none;
 
   .item {
@@ -31,10 +31,12 @@
     &.dots:hover {
       cursor: default;
       background-color: transparent;
+      transition: 0.2s;
     }
 
     &:hover {
-      background-color: var(--color-dark-500);
+      background-color: var(--color-dark-100);
+      transition: 0.2s;
     }
 
     &:focus-visible {
@@ -43,8 +45,8 @@
 
     &.selected {
       pointer-events: none;
-      color: var(--color-dark-900);
-      background-color: var(--color-light-100);
+      color: var(--color-light-300);
+      background-color: var(--color-dark-300);
     }
 
     &.disabled {
@@ -64,4 +66,12 @@
   @media (width <= 280px) {
     gap: 4px;
   }
+}
+
+.right {
+  fill: var(--font-color);
+}
+
+.left {
+  fill: var(--font-color);
 }
