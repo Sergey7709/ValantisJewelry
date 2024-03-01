@@ -3,12 +3,10 @@ import { useCallback, useEffect, useState } from 'react'
 import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
 import { LoaderSquare } from '@/components/ui/loader-square'
-import { Pagination } from '@/components/ui/pagination'
 import {
   defaultLimit,
   defaultPage,
   defaultValueParams,
-  magicNumber,
 } from '@/pages/dashboard/constants.dashboard'
 import { FilterParams, ResponseData, StateType } from '@/pages/dashboard/types.dashboard'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
@@ -81,15 +79,12 @@ export const Dashboard = () => {
       </div>
       {dataIDs && !loadingIds && (
         <>
-          <ItemList dataIDs={dataIDs} />
-          {state.action !== 'filter' && (
-            <Pagination
-              currentPage={page}
-              onPageChange={page => handlerPagination(page)}
-              pageSize={limit}
-              totalCount={magicNumber}
-            />
-          )}
+          <ItemList
+            dataIDs={dataIDs}
+            handlerPagination={handlerPagination}
+            limit={limit}
+            page={page}
+          />
         </>
       )}
     </div>
