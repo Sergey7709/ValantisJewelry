@@ -127,9 +127,13 @@ export const Empty: FC<ComponentProps<'div'> & { mb?: string; mt?: string }> = (
   }
 
   return (
-    <Typography className={classNames.empty} variant={'h3'}>
-      No data yet!
-    </Typography>
+    <tr>
+      <th>
+        <Typography className={classNames.empty} variant={'h3'}>
+          No data yet!
+        </Typography>
+      </th>
+    </tr>
   )
 }
 
