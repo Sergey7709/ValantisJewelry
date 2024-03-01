@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import { Select } from '@/components/ui/select'
 import { TextField } from '@/components/ui/text-field'
@@ -17,7 +17,7 @@ const optionsSelect = ['brand', 'price', 'product']
 
 const milliSecondsValue = 1000
 
-export const FilteredPanel = ({ onHandleSubmitParams }: FilteredPanelProps) => {
+export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps) => {
   const [searchValueTextField, setSearchValueTextField] = useState<SearchValue>('')
   const [searchValueSelect, setSearchValueSelect] = useState<KeysFilterParams>('product')
 
@@ -58,4 +58,4 @@ export const FilteredPanel = ({ onHandleSubmitParams }: FilteredPanelProps) => {
       </div>
     </div>
   )
-}
+})
