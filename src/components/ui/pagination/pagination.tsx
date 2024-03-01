@@ -51,7 +51,7 @@ export const Pagination = (props: Props) => {
         onKeyDown={e => onKeySubmit(e, onPrevious)}
         tabIndex={currentPage !== 1 ? 0 : undefined}
       >
-        <ArrowLeft />
+        <ArrowLeft className={s.left} />
       </li>
 
       {paginationRange.map((pageNumber, index) => {
@@ -81,7 +81,7 @@ export const Pagination = (props: Props) => {
         onKeyDown={e => onKeySubmit(e, onNext)}
         tabIndex={currentPage !== lastPage ? 0 : undefined}
       >
-        <ArrowRight />
+        <ArrowRight className={s.right} />
       </li>
     </ul>
   )

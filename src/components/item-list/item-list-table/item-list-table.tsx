@@ -40,9 +40,9 @@ export const ItemListTable = ({ uniqueItems }: ItemListTableProps) => {
       <Table.Root>
         <Table.Header columns={columnsDecks} onSort={() => {}} sort={null}>
           <Table.Head>
-            <Table.Row className={s.deckHeaderRow}>
+            <Table.Row className={s.tableHeaderRow}>
               <Table.HeadCellList
-                className={s.deckHeaderCell}
+                className={s.tableHeaderCell}
                 columns={columnsDecks}
                 onSort={() => {}}
                 sort={null}
