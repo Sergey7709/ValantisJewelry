@@ -40,18 +40,20 @@ export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps)
   }
 
   return (
-    <div>
-      <div className={s.filterTextField}>
-        <Select
-          label={'Filter'}
-          onValueChange={handlerSelect}
-          options={optionsSelect}
-          placeholder={'Select the filter type'}
-          value={searchValueSelect}
-          variant={'common'}
-        />
-        <TextField label={'Search'} onValueChange={handlerChangeValueTextField} type={'search'} />
-      </div>
+    <div className={s.wrapper_textField}>
+      <Select
+        onValueChange={handlerSelect}
+        options={optionsSelect}
+        placeholder={'Select the filter type'}
+        value={searchValueSelect}
+        variant={'common'}
+      />
+      <TextField
+        className={s.text_field}
+        label={'Select a filter type and enter a search query'}
+        onValueChange={handlerChangeValueTextField}
+        type={'search'}
+      />
     </div>
   )
 })
