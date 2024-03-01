@@ -85,7 +85,7 @@
 
   opacity: 0.4;
 
-  fill: var(--color-light-100);
+  fill: var(--color-dark-300);
 }
 
 .field:focus {
@@ -105,4 +105,6 @@ input[type='search'] {
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
+
+  fill: var(--color-dark-500);
 }
