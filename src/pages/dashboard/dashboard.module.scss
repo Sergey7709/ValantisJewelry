@@ -3,23 +3,3 @@
   gap: 10px;
   align-items: end;
 }
-
-.button {
-  cursor: pointer;
-
-  width: 20%;
-  height: 38px;
-
-  font-size: var(--font-size-m);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-danger);
-
-  background: linear-gradient(90deg, #5454f5, cyan);
-  border: 1px var(--color-dark-300) solid;
-  border-radius: 4px;
-
-  &:hover {
-    background: linear-gradient(90deg, #8a8af8, cyan);
-    transition: 0.3s;
-  }
-}
