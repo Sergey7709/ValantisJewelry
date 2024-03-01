@@ -32,7 +32,7 @@ const toggleTheme: ChangeEventHandler<HTMLInputElement> = e => {
 
 export const ThemeMode = () => {
   return (
-    <div style={{ marginLeft: '100px', marginTop: '50px' }}>
+    <div>
       <input
         className={s.check}
         defaultChecked={defaultDark}
