@@ -63,7 +63,7 @@ export const Dashboard = () => {
 
   const handlerFiltered = useCallback(
     (params: FilterParams) => {
-      setState({ ...state, action: filtered, params })
+      setState(prevState => ({ ...prevState, action: filtered, params }))
     },
     [state]
   )
