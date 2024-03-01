@@ -15,7 +15,7 @@ type SearchValue = string
 
 const optionsSelect = ['brand', 'price', 'product']
 
-const milliSecondsValue = 1000
+const milliSecondsValue = 1500
 
 export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps) => {
   const [searchValueTextField, setSearchValueTextField] = useState<SearchValue>('')
@@ -25,11 +25,19 @@ export const FilteredPanel = memo(({ onHandleSubmitParams }: FilteredPanelProps)
 
   useEffect(() => {
     if (debounce.length >= 1) {
+      const formatValueForBrand = (value: string) =>
+        value
+          .split(' ')
+          .map(text => text.replace(text[0], text[0].toUpperCase()))
+          .join(' ')
+
+      const formattedValue =
+        searchValueSelect === 'brand'
+          ? formatValueForBrand(searchValueTextField)
+          : searchValueTextField
+
       const submitValueSelect = {
-        [searchValueSelect]:
-          searchValueSelect === 'price'
-            ? Number(searchValueTextField.toString())
-            : searchValueTextField,
+        [searchValueSelect]: searchValueSelect === 'price' ? +formattedValue : formattedValue,
       } as FilterParams
 
       onHandleSubmitParams(submitValueSelect)
