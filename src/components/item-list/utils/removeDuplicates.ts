@@ -1,9 +1,4 @@
-type Item = {
-  brand: null | string
-  id: string
-  price: number
-  product: string
-}
+import { Item } from '../types.ItemList'
 
 export const removeDuplicates = (items: Item[]) => {
   const uniqueItems: Item[] = []
