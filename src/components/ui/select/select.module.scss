@@ -12,12 +12,13 @@
   color: var(--color-light-100);
 
   background: var(--color-accent-300);
-  border: 1px var(--color-dark-300) solid;
+  border: 1px var(--color-accent-500) solid;
   border-radius: 2px;
 
   &:hover {
     cursor: pointer;
-    background: var(--dark-500, #333);
+    background: var(--color-accent-100);
+    transition: 0.3s;
   }
 
   &:focus {
@@ -59,9 +60,13 @@
   &:hover,
   &:focus {
     cursor: pointer;
+
     color: var(--color-light-100);
+
     background: var(--color-accent-300);
     outline: none;
+
+    transition: 0.2s;
   }
 }
 
