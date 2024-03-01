@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
+import { LoaderSquare } from '@/components/ui/loader-square'
 import { Pagination } from '@/components/ui/pagination'
 import {
   defaultLimit,
@@ -12,6 +13,8 @@ import {
 import { FilterParams, ResponseData, StateType } from '@/pages/dashboard/types.dashboard'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 import { useIsFirstRender } from '@/shared/hooks'
+
+import s from './dashboard.module.scss'
 
 const { filtered, getId } = requestValue
 const { post } = requestMethod
@@ -41,7 +44,6 @@ export const Dashboard = () => {
 
   const {
     data: dataIDs,
-    error: errorIds,
     getData,
     loading: loadingIds,
   } = useAxiosQuery<ResponseData>({
@@ -70,11 +72,15 @@ export const Dashboard = () => {
 
   return (
     <div>
-      {loadingIds && <div style={{ color: 'red' }}>LOADING</div>}
-      {errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}
+      {loadingIds && <LoaderSquare />}
+      {/*{errorIds && <div style={{ color: 'red' }}>{errorIds}</div>}*/}
       {/*<ol>{dataIDs?.result?.map((el: string, index) => <li key={index}>{el}</li>)}</ol>*/}
-      <button onClick={handlerReset}>Reset</button>
-      <FilteredPanel onHandleSubmitParams={handlerFiltered} />
+      <div className={s.wrapper_panel}>
+        <FilteredPanel onHandleSubmitParams={handlerFiltered} />
+        <button className={s.button} onClick={handlerReset}>
+          Reset
+        </button>
+      </div>
       {dataIDs && !loadingIds && (
         <>
           <ItemList dataIDs={dataIDs} />
