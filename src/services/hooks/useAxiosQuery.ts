@@ -30,7 +30,6 @@ export const useAxiosQuery = <T>({ params }: AxiosQuery) => {
         setLoading(false)
 
         if (retryCount < 2) {
-          console.log('retry')
           getData(retryCount + 1)
         }
       } else {
