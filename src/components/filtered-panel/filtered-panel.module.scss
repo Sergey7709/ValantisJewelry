@@ -10,7 +10,7 @@
   border-radius: 4px;
 }
 
-.button {
+div .button {
   cursor: pointer;
 
   width: 20%;
@@ -24,8 +24,9 @@
   border: 1px var(--color-dark-300) solid;
   border-radius: 4px;
 
-  &:hover {
-    background: linear-gradient(90deg, #8a8af8, cyan);
-    transition: 0.3s;
+  &:hover:not(:disabled) {
+    scale: 1.01;
+    background: var(--color-info-300);
+    transition: background-color 0.4s;
   }
 }
