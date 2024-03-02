@@ -61,6 +61,15 @@ export const Dashboard = () => {
     }))
   }
 
+  const handlerSetLimitPage = (newLimit: number) => {
+    setState(prevState => ({
+      ...prevState,
+      action: getId,
+      limit: newLimit,
+      params: { limit: newLimit, offset: (prevState.page - 1) * newLimit },
+    }))
+  }
+
   const handlerFiltered = useCallback(
     (params: FilterParams) => {
       setState(prevState => ({ ...prevState, action: filtered, params }))
@@ -83,6 +92,7 @@ export const Dashboard = () => {
           <ItemList
             dataIDs={dataIDs}
             handlerPagination={handlerPagination}
+            handlerSetLimitPage={handlerSetLimitPage}
             limit={limit}
             offPagination={state.action}
             page={page}
