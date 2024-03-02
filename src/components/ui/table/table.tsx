@@ -29,8 +29,8 @@ export type Column = {
 export const HeadCellList: FC<
   ComponentProps<'th'> & {
     columns: Column[]
-    onSort: (sort: Sort) => void
-    sort: Sort
+    onSort?: (sort: Sort) => void
+    sort?: Sort
   }
 > = ({ className, columns, onSort, sort, ...restProps }) => {
   const classNames = {
@@ -75,8 +75,8 @@ export const Header: FC<
   Omit<HeadProps, 'children'> & {
     children?: ReactNode
     columns: Column[]
-    onSort: (sort: Sort) => void
-    sort: Sort
+    onSort?: (sort: Sort) => void
+    sort?: Sort
   }
 > = ({ children, columns, onSort, sort, ...restProps }) => {
   return (
