@@ -78,7 +78,7 @@ export const Dashboard = () => {
       <div className={s.wrapper_panel}>
         <FilteredPanel handlerReset={handlerReset} onHandleSubmitParams={handlerFiltered} />
       </div>
-      {dataIDs && !loadingIds && (
+      {dataIDs && (
         <>
           <ItemList
             dataIDs={dataIDs}
