@@ -2,6 +2,7 @@ export type ItemListProps = {
   dataIDs: { result: string[] }
   handlerPagination: (newPage: number) => void
   limit: number
+  offPagination: string
   page: number
 }
 
