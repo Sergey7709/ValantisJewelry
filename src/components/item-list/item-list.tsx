@@ -9,7 +9,13 @@ import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/se
 const { getItem } = requestValue
 const { post } = requestMethod
 
-export const ItemList = ({ dataIDs, handlerPagination, limit, page }: ItemListProps) => {
+export const ItemList = ({
+  dataIDs,
+  handlerPagination,
+  limit,
+  offPagination,
+  page,
+}: ItemListProps) => {
   const axiosParams = {
     data: {
       action: getItem,
@@ -30,13 +36,15 @@ export const ItemList = ({ dataIDs, handlerPagination, limit, page }: ItemListPr
       {loadingItems && <LoaderSquare />}
       {dataItems && (
         <>
-          <ItemListTable uniqueItems={uniqueItems} />
-          <Pagination
-            currentPage={page}
-            onPageChange={page => handlerPagination(page)}
-            pageSize={limit}
-            totalCount={magicNumber}
-          />
+          {<ItemListTable uniqueItems={uniqueItems} />}
+          {offPagination !== 'filter' && (
+            <Pagination
+              currentPage={page}
+              onPageChange={page => handlerPagination(page)}
+              pageSize={limit}
+              totalCount={magicNumber}
+            />
+          )}
         </>
       )}
     </div>
