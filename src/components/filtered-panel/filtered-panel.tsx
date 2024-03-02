@@ -31,7 +31,6 @@ export const FilteredPanel = memo(({ handlerReset, onHandleSubmitParams }: Filte
       const submitValue = textTransformer({ searchValueSelect, searchValueTextField })
 
       onHandleSubmitParams(submitValue)
-      setSearchValueTextField('')
     }
   }, [debounce])
 
