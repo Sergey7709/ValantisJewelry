@@ -6,6 +6,7 @@ import { ItemListProps, ItemsResponse } from '@/components/item-list/types.ItemL
 import { removeDuplicates } from '@/components/item-list/utils'
 import { LoaderSquare } from '@/components/ui/loader-square'
 import { Pagination } from '@/components/ui/pagination'
+import { Typography } from '@/components/ui/typography'
 import { magicNumber } from '@/pages/dashboard/constants.dashboard'
 import { requestMethod, requestValue, useAxiosQuery, valueUrlParams } from '@/services'
 
@@ -50,7 +51,7 @@ export const ItemList = ({
       {dataItems && (
         <>
           {<ItemListTable uniqueItems={uniqueItems} />}
-          {offPagination !== 'filter' && (
+          {offPagination !== 'filter' ? (
             <div className={s.pagination_wrapper}>
               <Pagination
                 currentPage={page}
@@ -60,6 +61,10 @@ export const ItemList = ({
               />
               <ItemListLimitPage handlerSetLimitPage={handlerSetLimitPage} />
             </div>
+          ) : (
+            <Typography variant={'error'}>
+              * В API тестового задания метод filter не содержит параметров для пагинации 😉
+            </Typography>
           )}
         </>
       )}
