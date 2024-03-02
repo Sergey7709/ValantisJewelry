@@ -17,7 +17,7 @@
 
   &:hover {
     cursor: pointer;
-    background: linear-gradient(90deg, #8a8af8, cyan);
+    background: var(--color-info-300);
     transition: 0.3s;
   }
 
