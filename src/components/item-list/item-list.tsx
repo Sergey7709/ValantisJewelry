@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { ItemListTable } from '@/components/item-list/item-list-table'
 import { ItemListProps, ItemsResponse } from '@/components/item-list/types.ItemList'
 import { removeDuplicates } from '@/components/item-list/utils'
@@ -25,9 +27,17 @@ export const ItemList = ({
     url: valueUrlParams,
   }
 
-  const { data: dataItems, loading: loadingItems } = useAxiosQuery<ItemsResponse>({
+  const {
+    data: dataItems,
+    getData,
+    loading: loadingItems,
+  } = useAxiosQuery<ItemsResponse>({
     params: axiosParams,
   })
+
+  useEffect(() => {
+    getData()
+  }, [dataIDs])
 
   const uniqueItems = removeDuplicates(dataItems?.result ?? [])
 
