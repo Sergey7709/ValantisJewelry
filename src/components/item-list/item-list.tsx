@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { ItemListTable } from '@/components/item-list/item-list-table'
-import { ItemListLimitPage } from '@/components/item-list/item-list-table/item-list-limit-page/item-list-limit-page'
+import { ItemListLimitPage } from '@/components/item-list/item-list-table/item-list-limit-page'
 import { ItemListProps, ItemsResponse } from '@/components/item-list/types.ItemList'
 import { removeDuplicates } from '@/components/item-list/utils'
 import { LoaderSquare } from '@/components/ui/loader-square'
