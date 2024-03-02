@@ -28,7 +28,7 @@ export const useAxiosQuery = <T>({ params }: AxiosQuery) => {
         setError(`Error getting the data: ${Error.message}`)
 
         if (retryCount < 2) {
-          getData(retryCount + 1)
+          await getData(retryCount + 1)
         }
       } else {
         console.error(`Unknown error occurred:${error}`)
