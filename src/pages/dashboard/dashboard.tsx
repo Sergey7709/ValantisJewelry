@@ -84,6 +84,7 @@ export const Dashboard = () => {
             dataIDs={dataIDs}
             handlerPagination={handlerPagination}
             limit={limit}
+            offPagination={state.action}
             page={page}
           />
         </>
