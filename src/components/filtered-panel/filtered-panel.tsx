@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from 'react'
 
 import { textTransformer } from '@/components/filtered-panel/filtred-utils/text-transformer'
+import { Button } from '@/components/ui/button'
 import { Select } from '@/components/ui/select'
 import { TextField } from '@/components/ui/text-field'
 import { FilterParams, KeysFilterParams } from '@/pages/dashboard/types.dashboard'
@@ -63,9 +64,9 @@ export const FilteredPanel = memo(({ handlerReset, onHandleSubmitParams }: Filte
         type={'search'}
         value={searchValueTextField}
       />
-      <button className={s.button} onClick={onHandlerReset}>
+      <Button className={s.button} onClick={onHandlerReset}>
         Reset
-      </button>
+      </Button>
     </div>
   )
 })
