@@ -1,14 +1,13 @@
 import { ItemListTableData } from '@/components/item-list/item-list-table/item-list-table-data'
 import { Item } from '@/components/item-list/types.ItemList'
-import { Table } from '@/components/ui/table'
+import { Column, Table } from '@/components/ui/table'
 
 import s from './item-list-table.module.scss'
-export type Column = {
-  key: string
-  sortable?: boolean
-  title: string
+
+type ItemListTableProps = {
+  uniqueItems: Item[]
 }
-export const columnsDecks: Column[] = [
+const columnsDecks: Column[] = [
   {
     key: 'ID',
     sortable: false,
@@ -16,7 +15,7 @@ export const columnsDecks: Column[] = [
   },
   {
     key: 'Product',
-    sortable: true,
+    sortable: false,
     title: 'Product',
   },
   {
@@ -31,22 +30,14 @@ export const columnsDecks: Column[] = [
   },
 ]
 
-type ItemListTableProps = {
-  uniqueItems: Item[]
-}
 export const ItemListTable = ({ uniqueItems }: ItemListTableProps) => {
   return (
     <div className={s.tableWrapper}>
       <Table.Root>
-        <Table.Header columns={columnsDecks} onSort={() => {}} sort={null}>
+        <Table.Header columns={columnsDecks}>
           <Table.Head>
             <Table.Row className={s.tableHeaderRow}>
-              <Table.HeadCellList
-                className={s.tableHeaderCell}
-                columns={columnsDecks}
-                onSort={() => {}}
-                sort={null}
-              />
+              <Table.HeadCellList className={s.tableHeaderCell} columns={columnsDecks} />
             </Table.Row>
           </Table.Head>
         </Table.Header>
