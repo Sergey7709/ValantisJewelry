@@ -1,0 +1,7 @@
+.pagination_wrapper {
+  display: flex;
+
+  @media (width <= 560px) {
+    flex-direction: column;
+  }
+}

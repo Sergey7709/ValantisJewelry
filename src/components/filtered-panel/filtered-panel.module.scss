@@ -1,0 +1,32 @@
+.wrapper_textField {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  width: 100%;
+}
+
+.text_field {
+  width: 100%;
+  border-radius: 4px;
+}
+
+div .button {
+  cursor: pointer;
+
+  width: 20%;
+  height: 38px;
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-danger);
+
+  background: linear-gradient(90deg, #5454f5, cyan);
+  border: 1px var(--color-dark-300) solid;
+  border-radius: 4px;
+
+  &:hover:not(:disabled) {
+    scale: 1.01;
+    background: var(--color-info-300);
+    transition: background-color 0.4s;
+  }
+}
