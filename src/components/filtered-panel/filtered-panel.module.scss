@@ -25,8 +25,7 @@ div .button {
   border-radius: 4px;
 
   &:hover:not(:disabled) {
-    scale: 1.01;
-    background: var(--color-info-300);
-    transition: background-color 0.4s;
+    background: linear-gradient(90deg, #61eddf, #63adf9);
+    transition: background-color 0.1s;
   }
 }
