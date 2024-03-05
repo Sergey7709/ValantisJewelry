@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { FilteredPanel } from '@/components/filtered-panel'
 import { ItemList } from '@/components/item-list'
@@ -70,16 +70,13 @@ export const Dashboard = () => {
     }))
   }
 
-  const handlerFiltered = useCallback(
-    (params: FilterParams) => {
-      setState(prevState => ({ ...prevState, action: filtered, params }))
-    },
-    [state]
-  )
+  const handlerFiltered = (params: FilterParams) => {
+    setState(prevState => ({ ...prevState, action: filtered, params }))
+  }
 
-  const handlerReset = useCallback(() => {
+  const handlerReset = () => {
     setState({ ...initialState })
-  }, [])
+  }
 
   return (
     <div>
