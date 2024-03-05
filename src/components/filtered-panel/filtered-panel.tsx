@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { textTransformer } from '@/components/filtered-panel/filtred-utils/text-transformer'
 import { Button } from '@/components/ui/button'
@@ -20,7 +20,7 @@ const optionsSelect = ['brand', 'price', 'product']
 
 const milliSecondsValue = 1500
 
-export const FilteredPanel = memo(({ handlerReset, onHandleSubmitParams }: FilteredPanelProps) => {
+export const FilteredPanel = ({ handlerReset, onHandleSubmitParams }: FilteredPanelProps) => {
   const [searchValueTextField, setSearchValueTextField] = useState<SearchValue>('')
   const [searchValueSelect, setSearchValueSelect] = useState<KeysFilterParams>('product')
 
@@ -68,4 +68,4 @@ export const FilteredPanel = memo(({ handlerReset, onHandleSubmitParams }: Filte
       </Button>
     </div>
   )
-})
+}
